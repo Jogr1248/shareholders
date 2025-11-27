@@ -15,6 +15,6 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   // this part is button
   return <Button>Hello Riders <br />
-  <Link to="/sample">Sample</Link>
+  <Link to="/sample">Shareholders</Link>
   </Button>;
 }
