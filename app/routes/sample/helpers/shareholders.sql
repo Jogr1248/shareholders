@@ -1,0 +1,36 @@
+USE riders_share_db;
+
+CREATE TABLE shareholders (
+  shareholder_id varchar(255) NOT NULL,
+  name_amharic varchar(255) DEFAULT NULL,
+  name_english varchar(255) DEFAULT NULL,
+  gender varchar(255) DEFAULT NULL,
+  nationality varchar(255) DEFAULT 'ኢትዮጵያዊ',
+  birth_date_amharic varchar(255) DEFAULT NULL,
+  birth_date_english timestamp NULL DEFAULT NULL,
+  national_id_num varchar(16) DEFAULT NULL,
+  passport_num varchar(255) DEFAULT NULL,
+  tin_num varchar(255) DEFAULT NULL,
+  residency_status varchar(255) DEFAULT NULL,
+  city varchar(255) DEFAULT NULL,
+  sub_city varchar(255) DEFAULT NULL,
+  wereda varchar(255) DEFAULT NULL,
+  house_num varchar(255) DEFAULT NULL,
+  phone_primary varchar(20) DEFAULT NULL,
+  phone_secondary varchar(255) DEFAULT NULL,
+  email varchar(255) DEFAULT NULL,
+  dividend_bank_name varchar(255) DEFAULT NULL,
+  dividend_bank_account varchar(255) DEFAULT NULL,
+  subscribed_share double DEFAULT NULL,
+  receipt_num varchar(255) DEFAULT NULL,
+  certificate_num varchar(255) DEFAULT NULL,
+  is_certificate_taken tinyint(1) DEFAULT NULL,
+  medina_comment varchar(255) DEFAULT NULL,
+  general_comment text DEFAULT NULL,
+  created_by varchar(36) DEFAULT NULL,
+  updated_by varchar(36) DEFAULT NULL,
+  created_at timestamp NULL DEFAULT current_timestamp(),
+  updated_at timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+
+  PRIMARY KEY (`shareholder_id`)
+);

@@ -4,9 +4,36 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import type { Sample } from "./validation";
 
-export function InputId({ id }: { id: number }) {
-  return <input type="hidden" name="id" value={id} />;
+export function InputShareholderId({ fetcherData, editSample }: any) {
+  const value =
+    editSample?.shareholder_id ??
+    fetcherData?.fields?.shareholder_id ??
+    "";
+
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="shareholder_id">Shareholder ID</Label>
+
+      <Input
+        id="shareholder_id"
+        name="shareholder_id"
+        required
+        defaultValue={value}
+        aria-invalid={Boolean(fetcherData?.errors?.shareholder_id)}
+        aria-describedby="shareholder_id-error"
+        placeholder="e.g. SH-00123"
+      />
+
+      {fetcherData?.errors?.shareholder_id && (
+        <p id="shareholder_id-error" className="text-sm text-red-500">
+          {fetcherData.errors.shareholder_id[0]}
+        </p>
+      )}
+    </div>
+  );
 }
+
+
 
 export function InputAction({ isEdit }: { isEdit: boolean }) {
   return (
@@ -67,6 +94,26 @@ export function InputName_amharic({
     </div>
   );
 }
+export function InputGender({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="gender">Gender</Label>
+      <Input
+        id="gender"
+        name="gender"
+        defaultValue={fetcherData?.fields?.gender ?? editSample?.gender ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.gender)}
+        aria-describedby="gender-error"
+        placeholder="e.g. Male"
+      />
+      {fetcherData?.errors?.gender && (
+        <p id="gender-error" className="text-sm text-red-500">
+          {fetcherData.errors.gender[0]}
+        </p>
+      )}
+    </div>
+  );
+}
 export function InputNationality({
   fetcherData,
   editSample,
@@ -88,6 +135,134 @@ export function InputNationality({
       {fetcherData?.errors?.name_nationality && (
         <p id="nationality-error" className="text-sm text-red-500">
           {fetcherData.errors.nationality[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- BIRTH DATE AMHARIC ----------------------
+export function InputBirthDateAmharic({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="birth_date_amharic">Birth Date (Amharic)</Label>
+      <Input
+        id="birth_date_amharic"
+        name="birth_date_amharic"
+        defaultValue={fetcherData?.fields?.birth_date_amharic ?? editSample?.birth_date_amharic ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.birth_date_amharic)}
+        aria-describedby="birth_date_amharic-error"
+        placeholder="e.g. 1985/10/12"
+      />
+      {fetcherData?.errors?.birth_date_amharic && (
+        <p id="birth_date_amharic-error" className="text-sm text-red-500">
+          {fetcherData.errors.birth_date_amharic[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- BIRTH DATE ENGLISH ----------------------
+export function InputBirthDateEnglish({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="birth_date_english">Birth Date (English)</Label>
+      <Input
+        id="birth_date_english"
+        type="date"
+        name="birth_date_english"
+        defaultValue={fetcherData?.fields?.birth_date_english ?? editSample?.birth_date_english ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.birth_date_english)}
+        aria-describedby="birth_date_english-error"
+      />
+      {fetcherData?.errors?.birth_date_english && (
+        <p id="birth_date_english-error" className="text-sm text-red-500">
+          {fetcherData.errors.birth_date_english[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- NATIONAL ID ----------------------
+export function InputNationalIdNum({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="national_id_num">National ID Number</Label>
+      <Input
+        id="national_id_num"
+        name="national_id_num"
+        defaultValue={fetcherData?.fields?.national_id_num ?? editSample?.national_id_num ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.national_id_num)}
+        aria-describedby="national_id_num-error"
+      />
+      {fetcherData?.errors?.national_id_num && (
+        <p id="national_id_num-error" className="text-sm text-red-500">
+          {fetcherData.errors.national_id_num[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- PASSPORT NUMBER ----------------------
+export function InputPassportNum({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="passport_num">Passport Number</Label>
+      <Input
+        id="passport_num"
+        name="passport_num"
+        defaultValue={fetcherData?.fields?.passport_num ?? editSample?.passport_num ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.passport_num)}
+        aria-describedby="passport_num-error"
+      />
+      {fetcherData?.errors?.passport_num && (
+        <p id="passport_num-error" className="text-sm text-red-500">
+          {fetcherData.errors.passport_num[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- TIN NUMBER ----------------------
+export function InputTinNum({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="tin_num">TIN Number</Label>
+      <Input
+        id="tin_num"
+        name="tin_num"
+        defaultValue={fetcherData?.fields?.tin_num ?? editSample?.tin_num ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.tin_num)}
+        aria-describedby="tin_num-error"
+      />
+      {fetcherData?.errors?.tin_num && (
+        <p id="tin_num-error" className="text-sm text-red-500">
+          {fetcherData.errors.tin_num[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- RESIDENCY STATUS ----------------------
+export function InputResidencyStatus({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="residency_status">Residency Status</Label>
+      <Input
+        id="residency_status"
+        name="residency_status"
+        defaultValue={fetcherData?.fields?.residency_status ?? editSample?.residency_status ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.residency_status)}
+        aria-describedby="residency_status-error"
+      />
+      {fetcherData?.errors?.residency_status && (
+        <p id="residency_status-error" className="text-sm text-red-500">
+          {fetcherData.errors.residency_status[0]}
         </p>
       )}
     </div>
@@ -276,7 +451,175 @@ export function InputEmail({
     </div>
   );
 }
+export function InputDividendBankName({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="dividend_bank_name">Dividend Bank Name</Label>
+      <Input
+        id="dividend_bank_name"
+        name="dividend_bank_name"
+        defaultValue={fetcherData?.fields?.dividend_bank_name ?? editSample?.dividend_bank_name ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.dividend_bank_name)}
+        aria-describedby="dividend_bank_name-error"
+      />
+      {fetcherData?.errors?.dividend_bank_name && (
+        <p id="dividend_bank_name-error" className="text-sm text-red-500">
+          {fetcherData.errors.dividend_bank_name[0]}
+        </p>
+      )}
+    </div>
+  );
+}
 
+// ---------------------- DIVIDEND BANK ACCOUNT ----------------------
+export function InputDividendBankAccount({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="dividend_bank_account">Dividend Bank Account</Label>
+      <Input
+        id="dividend_bank_account"
+        name="dividend_bank_account"
+        defaultValue={fetcherData?.fields?.dividend_bank_account ?? editSample?.dividend_bank_account ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.dividend_bank_account)}
+        aria-describedby="dividend_bank_account-error"
+      />
+      {fetcherData?.errors?.dividend_bank_account && (
+        <p id="dividend_bank_account-error" className="text-sm text-red-500">
+          {fetcherData.errors.dividend_bank_account[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- SUBSCRIBED SHARE ----------------------
+export function InputSubscribedShare({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="subscribed_share">Subscribed Share</Label>
+      <Input
+        id="subscribed_share"
+        type="number"
+        name="subscribed_share"
+        defaultValue={fetcherData?.fields?.subscribed_share ?? editSample?.subscribed_share ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.subscribed_share)}
+        aria-describedby="subscribed_share-error"
+      />
+      {fetcherData?.errors?.subscribed_share && (
+        <p id="subscribed_share-error" className="text-sm text-red-500">
+          {fetcherData.errors.subscribed_share[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- RECEIPT NUMBER ----------------------
+export function InputReceiptNum({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="receipt_num">Receipt Number</Label>
+      <Input
+        id="receipt_num"
+        name="receipt_num"
+        defaultValue={fetcherData?.fields?.receipt_num ?? editSample?.receipt_num ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.receipt_num)}
+        aria-describedby="receipt_num-error"
+      />
+      {fetcherData?.errors?.receipt_num && (
+        <p id="receipt_num-error" className="text-sm text-red-500">
+          {fetcherData.errors.receipt_num[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- CERTIFICATE NUMBER ----------------------
+export function InputCertificateNum({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="certificate_num">Certificate Number</Label>
+      <Input
+        id="certificate_num"
+        name="certificate_num"
+        defaultValue={fetcherData?.fields?.certificate_num ?? editSample?.certificate_num ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.certificate_num)}
+        aria-describedby="certificate_num-error"
+      />
+      {fetcherData?.errors?.certificate_num && (
+        <p id="certificate_num-error" className="text-sm text-red-500">
+          {fetcherData.errors.certificate_num[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- IS CERTIFICATE TAKEN ----------------------
+export function InputIsCertificateTaken({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="is_certificate_taken">Certificate Taken?</Label>
+      <Input
+        id="is_certificate_taken"
+        type="checkbox"
+        name="is_certificate_taken"
+        defaultChecked={fetcherData?.fields?.is_certificate_taken ?? editSample?.is_certificate_taken ?? false}
+        aria-invalid={Boolean(fetcherData?.errors?.is_certificate_taken)}
+        aria-describedby="is_certificate_taken-error"
+      />
+      {fetcherData?.errors?.is_certificate_taken && (
+        <p id="is_certificate_taken-error" className="text-sm text-red-500">
+          {fetcherData.errors.is_certificate_taken[0]}
+        </p>
+      )}
+
+    </div>
+  );
+}
+
+// ---------------------- MEDINA COMMENT ----------------------
+export function InputMedinaComment({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="medina_comment">Medina Comment</Label>
+      <Input
+        id="medina_comment"
+        name="medina_comment"
+        defaultValue={fetcherData?.fields?.medina_comment ?? editSample?.medina_comment ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.medina_comment)}
+        aria-describedby="medina_comment-error"
+      />
+      {fetcherData?.errors?.medina_comment && (
+        <p id="medina_comment-error" className="text-sm text-red-500">
+          {fetcherData.errors.medina_comment[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------- GENERAL COMMENT ----------------------
+export function InputGeneralComment({ fetcherData, editSample }: any) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="general_comment">General Comment</Label>
+      <Input
+        id="general_comment"
+        name="general_comment"
+        defaultValue={fetcherData?.fields?.general_comment ?? editSample?.general_comment ?? ""}
+        aria-invalid={Boolean(fetcherData?.errors?.general_comment)}
+        aria-describedby="general_comment-error"
+      />
+      {fetcherData?.errors?.general_comment && (
+        <p id="general_comment-error" className="text-sm text-red-500">
+          {fetcherData.errors.general_comment[0]}
+        </p>
+      )}
+    </div>
+  );
+}
 
 export function InputSubmit({
   isEdit,

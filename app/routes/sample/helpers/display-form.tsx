@@ -10,18 +10,33 @@ import {
 } from "~/components/ui/dialog";
 import {
   InputAction,
-  InputName_english,
-  InputId,
-  InputName_amharic,
-  InputNationality,
-  InputCity,
-  InputSub_city,
-  InputWereda,
-  InputHouse_number,
-  InputPrimary_phone,
-  InputSecondary_phone,
-  InputEmail
-  ,InputSubmit,
+  InputShareholderId,
+InputName_english,
+InputName_amharic,
+InputGender,
+InputNationality,
+InputBirthDateAmharic,
+InputBirthDateEnglish,
+InputNationalIdNum,
+InputPassportNum,
+InputTinNum,
+InputResidencyStatus,
+InputCity,
+InputSub_city,
+InputWereda,
+InputHouse_number,
+InputPrimary_phone,
+InputSecondary_phone,
+InputEmail,
+InputDividendBankName,
+InputDividendBankAccount,
+InputSubscribedShare,
+InputReceiptNum,
+InputCertificateNum,
+InputIsCertificateTaken,
+InputMedinaComment,
+InputGeneralComment,
+InputSubmit,
 } from "./component-input";
 import type { Sample } from "./validation";
 
@@ -45,7 +60,7 @@ export function DisplayForm({
   const handleOpenChange = (open: boolean) => {
     if (!open) {
       setEditSample(null);
-      formRef.current?.reset();
+      
     }
     setIsModalOpen(open);
   };
@@ -59,14 +74,14 @@ export function DisplayForm({
   }, [fetcher.data]);
 
   const isEdit = Boolean(editSample);
-  const title = isEdit ? "Edit Sample" : "Create New Sample";
+  const title = isEdit ? "Edit shareholder" : "Create New shareholder";
   const description = isEdit
-    ? "Update the sample details. You cannot change the image."
-    : "Fill in the details for a new sample.";
+    ? "Update the shareholder details. "
+    : "Fill in the details for a new shareholder.";
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
@@ -75,14 +90,22 @@ export function DisplayForm({
         <fetcher.Form
           ref={formRef}
           method="post"
-          className="space-y-6"
+          className="space-y-6 max-h-[70vh] overflow-y-auto pr-2"
           noValidate
         >
-          {editSample && <InputId id={editSample.id} />}
+          {/* <InputShareholderId shareholder_id={editSample?.shareholder_id}/> */}
+          <InputShareholderId fetcherData={fetcher.data} editSample={editSample}/>
           <InputAction isEdit={isEdit} />
           <InputName_english fetcherData={fetcher.data} editSample={editSample} />
           <InputName_amharic fetcherData={fetcher.data} editSample={editSample}  />
+          <InputGender fetcherData={fetcher.data} editSample={editSample}  />
           <InputNationality fetcherData={fetcher.data} editSample={editSample} />
+           <InputBirthDateAmharic fetcherData={fetcher.data} editSample={editSample} />
+           <InputBirthDateEnglish fetcherData={fetcher.data} editSample={editSample}/>
+            <InputNationalIdNum fetcherData={fetcher.data} editSample={editSample}/>
+            <InputPassportNum fetcherData={fetcher.data} editSample={editSample}/>
+            <InputTinNum fetcherData={fetcher.data} editSample={editSample}/>
+            <InputResidencyStatus fetcherData={fetcher.data} editSample={editSample}/>
           <InputCity fetcherData={fetcher.data} editSample={editSample}  />
           <InputSub_city fetcherData={fetcher.data} editSample={editSample} />
           <InputWereda fetcherData={fetcher.data} editSample={editSample}  />
@@ -90,7 +113,14 @@ export function DisplayForm({
           <InputPrimary_phone fetcherData={fetcher.data} editSample={editSample}  />
           <InputSecondary_phone fetcherData={fetcher.data} editSample={editSample} />
           <InputEmail fetcherData={fetcher.data} editSample={editSample}  />
-        
+          <InputDividendBankName fetcherData={fetcher.data} editSample={editSample}  />
+          <InputDividendBankAccount fetcherData={fetcher.data} editSample={editSample} />
+          <InputSubscribedShare fetcherData={fetcher.data} editSample={editSample}  />
+          <InputReceiptNum fetcherData={fetcher.data} editSample={editSample} />
+          <InputCertificateNum fetcherData={fetcher.data} editSample={editSample}  />
+          <InputIsCertificateTaken fetcherData={fetcher.data} editSample={editSample} />
+          <InputMedinaComment fetcherData={fetcher.data} editSample={editSample}  />
+          <InputGeneralComment fetcherData={fetcher.data} editSample={editSample}  />
           <DialogFooter>
             <InputSubmit isEdit={isEdit} isSubmitting={isSubmitting} />
           </DialogFooter>

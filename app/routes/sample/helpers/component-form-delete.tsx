@@ -2,7 +2,7 @@ import { Trash2 } from "lucide-react";
 import { useFetcher } from "react-router";
 import { Button } from "~/components/ui/button";
 
-export function DeleteForm({ id }: { id: number }) {
+export function DeleteForm({ shareholder_id }: { shareholder_id: string }) {
   const fetcher = useFetcher();
   const isSubmitting = fetcher.state === "submitting";
 
@@ -20,7 +20,7 @@ export function DeleteForm({ id }: { id: number }) {
       }}
     >
       <input type="hidden" name="_action" value="delete" />
-      <input type="hidden" name="id" value={id} />
+      <input type="hidden"  name="shareholder_id" value={shareholder_id} />
       <Button
         variant="destructive"
         size="icon"
