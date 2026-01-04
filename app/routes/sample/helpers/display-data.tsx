@@ -1,5 +1,7 @@
+
 import DisplaySamples from "./component-list";
 import type { Sample } from "./validation";
+
 
 type DisplayDataProps = {
   samples: Sample[];
