@@ -6,8 +6,13 @@ import { handleDepositAction } from "./helpers/action-handler";
 import { DepositSearch } from "./helpers/deposit-search";
 import { DepositForm } from "./helpers/deposit-form";
 import { getAllShareholders } from "./helpers/services.server";
+import { requireRole } from "~/services/auth.server";
 
-export async function loader() {
+
+export async function loader({ request }: { request: Request }) {
+  // Protect the route
+  requireRole(request, ["ADMIN", "MASTER_ENCODER", "DEPOSIT_ENCODER"]);
+
   const shareholders = await getAllShareholders();
   return { shareholders };
 }

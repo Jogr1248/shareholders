@@ -1,6 +1,7 @@
 import { deleteData, insertData, updateData } from "./services.server";
 import { validateSample } from "./validate-sample";
 export async function handleAction({
+  
   actionType,
   shareholder_id,
   name_english,
@@ -200,8 +201,10 @@ const validation = await validateSample(
       });
       return { success: true };
     }
+    
 
     default:
       return { success: false, error: "Unknown action" };
   }
+  
 }

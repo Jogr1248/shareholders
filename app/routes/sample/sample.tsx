@@ -7,13 +7,22 @@ import { DisplayData } from "./helpers/display-data";
 import { DisplayForm } from "./helpers/display-form";
 import { getAll } from "./helpers/services.server";
 import { type Sample } from "./helpers/validation";
+import { requireRole } from "~/services/auth.server";
 
 
-export async function loader() {
+
+// export async function loader() {
+//   const samples = await getAll();
+//   return { samples };
+//   requireRole(request, ["ADMIN", "MASTER_ENCODER", "SHAREHOLDER_ENCODER"]);
+// }
+export async function loader({ request }: { request: Request }) {
+  // Protect the route — throws 401/403 if not allowed
+  requireRole(request, ["ADMIN", "MASTER_ENCODER", "SHAREHOLDER_ENCODER"]);
+
   const samples = await getAll();
   return { samples };
 }
-
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
 

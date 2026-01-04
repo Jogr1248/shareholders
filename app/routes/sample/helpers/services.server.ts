@@ -136,4 +136,22 @@ export async function deleteData({ shareholder_id }: { shareholder_id: string })
   return await query("DELETE FROM shareholders WHERE shareholder_id = ?", [shareholder_id]);
 }
 
+export async function insertDeposit(data: {
+  shareholder_id: string;
+  deposit_date: string;
+  amount: number;
+  payment_method: string;
+  receipt_number: string;
+  notes: string | null;
+}) {
+  await query(
+    `UPDATE shareholders SET receipt_num = ? WHERE shareholder_id = ?`,
+    [data.receipt_number, data.shareholder_id]
+  );
 
+  await query(
+    `INSERT INTO deposits (shareholder_id, deposit_date, amount, payment_method, receipt_number, notes)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    [data.shareholder_id, data.deposit_date, data.amount, data.payment_method, data.receipt_number, data.notes]
+  );
+}
