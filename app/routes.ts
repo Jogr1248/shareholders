@@ -6,7 +6,10 @@ export default [
   route("/deposit", "routes/deposit/deposit.tsx"),
     route("/login", "routes/login/login.tsx"),
   route("/logout", "routes/logout.ts"),
+
   route("/forgot-password", "routes/forgot-password/forgot-password.tsx"),
   route("/reports", "routes/reports/reports.tsx"),
   route("/shareholder-deposits", "routes/shareholder-deposits.ts"),
+   route("/attendance", "routes/attendance/attendance.tsx"),
+   route("/attendance-report", "routes/attendance-report/attendance-report.tsx"),
 ] satisfies RouteConfig;

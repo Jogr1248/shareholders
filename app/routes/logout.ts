@@ -1,11 +1,11 @@
-// app/routes/logout.ts
+//logout.ts
 import { clearAuthCookie } from "~/services/auth.server";
 
 export const action = () => {
   return new Response(null, {
     status: 302,
     headers: {
-      Location: "/login",
+      Location: "/",
       "Set-Cookie": clearAuthCookie(),
     },
   });

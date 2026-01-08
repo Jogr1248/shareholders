@@ -29,9 +29,9 @@ export default function DepositPage({ loaderData }: { loaderData: { shareholders
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-between items-center mb-8">
-        <Link to="/" className="text-blue-600 hover:underline">
-          🏠 Home
-        </Link>
+       <a href="/" className="text-blue-600 hover:underline">
+  🏠 Home
+</a>
         <h1 className="text-3xl font-bold">Deposit Encoder</h1>
         <div />
       </div>
