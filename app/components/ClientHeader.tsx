@@ -1,60 +1,3 @@
-
-// import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
-
-// export function ClientHeader() {
-//   const [hydrated, setHydrated] = useState(false);
-
-//   useEffect(() => {
-//     setHydrated(true);
-//   }, []);
-
-//   if (!hydrated) {
-//     return (
-//       <header className="bg-blue-800 text-white shadow-lg">
-//         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-//           <div className="text-2xl font-bold">Riders Share</div>
-//           <div className="flex gap-8">
-//             <div className="w-20 h-6 bg-gray-300 rounded animate-pulse" />
-//             <div className="w-20 h-6 bg-gray-300 rounded animate-pulse" />
-//             <div className="w-20 h-6 bg-gray-300 rounded animate-pulse" />
-//             <div className="w-24 h-10 bg-gray-300 rounded animate-pulse" />
-//           </div>
-//         </div>
-//       </header>
-//     );
-//   }
-
-//   return (
-//     <header className="bg-blue-800 text-white shadow-lg">
-//       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-//         <Link to="/" className="text-2xl font-bold">
-//           Riders Share
-//         </Link>
-
-//         <nav className="flex items-center gap-8">
-//           <Link to="/" className="hover:underline">
-//             Home
-//           </Link>
-//           <Link to="/sample" className="hover:underline">
-//             Shareholders
-//           </Link>
-//           <Link to="/deposit" className="hover:underline">
-//             Deposit
-//           </Link>
-//           <Link to="/reports" className="hover:underline">
-//             Reports
-//           </Link>
-
-//           <Link to="/login" className="bg-green-600 hover:bg-green-700 px-6 py-2 rounded">
-//             Login
-//           </Link>
-//         </nav>
-//       </div>
-//     </header>
-//   );
-// }
-// app/components/ClientHeader.tsx
 import { useEffect, useState } from "react";
 
 export function ClientHeader() {
@@ -83,7 +26,7 @@ export function ClientHeader() {
     };
 
     readUser();
-    const interval = setInterval(readUser, 30000000);
+    const interval = setInterval(readUser, 300);  // 300ms is good — 30 million was too long
 
     return () => clearInterval(interval);
   }, [hydrated]);
@@ -105,7 +48,6 @@ export function ClientHeader() {
   }
 
   const role = user?.role || "";
-
   const isAdmin = role === "ADMIN";
 
   const showShareholders = isAdmin || role === "MASTER_ENCODER" || role === "SHAREHOLDER_ENCODER";
@@ -113,6 +55,7 @@ export function ClientHeader() {
   const showReports = isAdmin || role === "MASTER_ENCODER" || role === "AUDITOR";
   const showAttendance = isAdmin || role === "MASTER_ENCODER" || role === "ATTENDANCE_ENCODER";
   const showAttendanceReport = isAdmin || role === "MASTER_ENCODER" || role === "AUDITOR";
+
   return (
     <header className="bg-gradient-to-r from-green-900 to-green-700 text-white shadow-xl">
       <div className="container mx-auto px-6 py-5 flex justify-between items-center">
@@ -121,9 +64,9 @@ export function ClientHeader() {
         </a>
 
         <nav className="flex items-center gap-10 text-lg font-medium">
-          <a href="/" className="hover:text-yellow-300 transition">
+          {/* <a href="/" className="hover:text-yellow-300 transition">
             Home
-          </a>
+          </a> */}
 
           {showShareholders && (
             <a href="/sample" className="hover:text-yellow-300 transition">
@@ -142,18 +85,18 @@ export function ClientHeader() {
               Reports
             </a>
           )}
+
           {showAttendance && (
-  <a href="/attendance" className="hover:text-yellow-300 transition">
-    Attendance
-  </a>
-)}
+            <a href="/attendance" className="hover:text-yellow-300 transition">
+              Attendance
+            </a>
+          )}
 
-
-{showAttendanceReport && (
-  <a href="/attendance-report" className="hover:text-yellow-300 transition">
-    Attendance Report
-  </a>
-)}
+          {showAttendanceReport && (
+            <a href="/attendance-report" className="hover:text-yellow-300 transition">
+              Attendance Report
+            </a>
+          )}
 
           {user ? (
             <div className="flex items-center gap-8 border-l-4 border-yellow-400 pl-8">
@@ -174,7 +117,7 @@ export function ClientHeader() {
             </div>
           ) : (
             <a
-              href="/"
+              href="/login"
               className="bg-green-700 hover:bg-green-600 px-10 py-3 rounded-lg font-semibold transition shadow-md hover:shadow-lg"
             >
               Login
